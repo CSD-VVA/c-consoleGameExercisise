@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleGame.Gui
 {
@@ -27,6 +25,5 @@ namespace ConsoleGame.Gui
 
             Console.Write(_data);
         }
-
     }
 }

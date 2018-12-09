@@ -1,21 +1,17 @@
-﻿using System;
+﻿using ConsoleGame.Gui;
+using ConsoleGame.View;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleGame.Game
 {
-    class GameScreen
+    class GameScreen : Window
     {
-        private int width;
-        private int height;
-
         private Hero hero;
-        private List<Enemy> enemies = new List<Enemy>();
+        public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
 
-        public GameScreen(int width, int height)
+        public GameScreen() : base(0, 0, GameWindow.WIDTH, GameWindow.HEIGHT, '#')
         {
-            this.width = width;
-            this.height = height;
         }
 
         public void SetHero(Hero hero)
@@ -25,16 +21,7 @@ namespace ConsoleGame.Game
 
         public void AddEnemy(Enemy enemy)
         {
-            enemies.Add(enemy);
-        }
-
-        public void Render()
-        {
-            hero.PrintInfo();
-            foreach (Enemy enemy in enemies)
-            {
-                enemy.PrintInfo();
-            }
+            Enemies.Add(enemy);
         }
 
         public Hero GetHero()
@@ -44,23 +31,54 @@ namespace ConsoleGame.Game
 
         public void MoveAllEnemiesDown()
         {
-            foreach (Enemy enemy in enemies)
+            foreach (Enemy enemy in Enemies)
             {
                 enemy.MoveDown();
             }
         }
 
-        public Enemy getEnemyById(int id)
+        public Enemy GetEnemyById(int id)
         {
-            foreach (Enemy enemy in enemies)
+            foreach (Enemy enemy in Enemies)
             {
                 if (enemy.GetId() == id)
                 {
                     return enemy;
                 }
             }
-
             return null;
+        }
+
+        public void RenderHero()
+        {
+            hero.Render();
+        }
+
+        public void RenderEnemies()
+        {
+            foreach (Enemy enemy in Enemies)
+            {
+                enemy.Render();
+            }
+
+            IList<Enemy> enemiesToDelete = new List<Enemy>();
+            foreach (Enemy enemy in Enemies)
+            {
+                if (enemy.Y >= GameWindow.HEIGHT - 2)
+                {
+                    enemiesToDelete.Add(enemy);
+                }
+            }
+
+            foreach (Enemy enemy in enemiesToDelete)
+            {
+                Enemies.Remove(enemy);
+            }
+        }
+
+        public int GetAliveEnemyCount()
+        {
+            return Enemies.Count;
         }
     }
 }

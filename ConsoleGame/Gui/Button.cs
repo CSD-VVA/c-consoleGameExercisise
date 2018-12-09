@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleGame.Gui
+﻿namespace ConsoleGame.Gui
 {
     class Button : GuiObject
     {
-
         private Frame notActiveFrame;
         private Frame activeFrame;
 
         private bool isActive = false;
         private TextLine textLine;
+
+        public string Name { get; private set; }
 
         public Button(int x, int y, int width, int height, string buttonText) : base(x, y, width, height)
         {
@@ -19,6 +16,8 @@ namespace ConsoleGame.Gui
             activeFrame = new Frame(x, y, width, height, '#');
 
             textLine = new TextLine(x + 1, y + 1 + ((height - 2) / 2), width - 2, buttonText);
+
+            Name = buttonText;
         }
 
         public override void Render()
@@ -38,6 +37,11 @@ namespace ConsoleGame.Gui
         public void SetActive()
         {
             isActive = true;
+        }
+
+        public void SetInactive()
+        {
+            isActive = false;
         }
     }
 }

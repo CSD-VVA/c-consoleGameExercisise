@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleGame.Gui
+﻿namespace ConsoleGame.Gui
 {
     abstract class GuiObject
     {
@@ -20,6 +16,5 @@ namespace ConsoleGame.Gui
         }
 
         public abstract void Render();
-
     }
 }

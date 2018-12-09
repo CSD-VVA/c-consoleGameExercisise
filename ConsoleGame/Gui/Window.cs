@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleGame.Gui
 {
     class Window : GuiObject
     {
-
         private Frame border;
 
         public Window(int x, int y, int width, int height, char borderChar) : base(x, y, width, height)
@@ -22,6 +19,7 @@ namespace ConsoleGame.Gui
         public override void Render()
         {
             border.Render();
+            Console.SetCursorPosition(0, 0);
         }
     }
 }

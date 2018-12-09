@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleGame.Gui
 {
     class Frame : GuiObject
     {
-        private char _renderChar;
+        private readonly char _renderChar;
 
         public Frame(int x, int y, int width, int height, char renderChar) : base(x, y, width, height)
         {
             _renderChar = renderChar;
         }
-
 
         public override void Render()
         {
@@ -39,5 +36,4 @@ namespace ConsoleGame.Gui
             }
         }
     }
-
 }
